@@ -23,4 +23,17 @@ Route::group(['middleware'=>'auth'],function (){
 
 
     Route::get('all_counties','CountiesController@index')->name('all_counties');
+
+    //sub county
+    Route::get('sub_counties','SubCountyController@index')->name('sub_counties');
+    Route::post('save_sub_county','SubCountyController@newSubCounty')->name('save_sub_county');
+    Route::get('all_sub_counties','SubCountyController@allSubCounties')->name('all_sub_counties');
+
+
+    //crops
+    Route::get('all_crops','CropsController@index')->name('all_crops');
+    Route::post('new_crop','CropsController@newCrop')->name('new_crop');
+
+    //sub county crops
+    Route::get('sub_county_crops_view','CropsController@subCountyCropsView')->name('sub_county_crops_view');
 });
