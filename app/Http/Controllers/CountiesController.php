@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\County;
 use Illuminate\Http\Request;
 
 class CountiesController extends Controller
@@ -10,6 +11,7 @@ class CountiesController extends Controller
 
     public function index()
     {
-        return view('counties.index');
+        $counties=County::all();
+        return view('counties.index')->withCounties($counties);
     }
 }

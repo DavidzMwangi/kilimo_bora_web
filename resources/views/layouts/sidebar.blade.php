@@ -27,7 +27,7 @@
             <a href="{{route('home')}}">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
+              {{--<i class="fa fa-angle-left pull-right"></i>--}}
             </span>
             </a>
             {{--<ul class="treeview-menu">--}}
@@ -36,6 +36,9 @@
             {{--</ul>--}}
         </li>
         <li><a href="{{route('all_counties')}}"><i class="fa fa-circle-o text-red"></i> <span>Counties</span></a></li>
+        <li><a href="{{route('sub_counties')}}"><i class="fa fa-circle-o text-red"></i> <span>Sub Counties</span></a></li>
+        <li><a href="{{route('all_crops')}}"><i class="fa fa-circle-o text-red"></i> <span>All Crops</span></a></li>
+        <li><a href="{{route('sub_county_crops_view')}}"><i class="fa fa-circle-o text-red"></i> <span>Sub County Crops</span></a></li>
 
         {{--<li class="treeview">--}}
             {{--<a href="#">--}}
