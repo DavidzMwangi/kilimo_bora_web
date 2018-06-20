@@ -36,4 +36,5 @@ Route::group(['middleware'=>'auth'],function (){
 
     //sub county crops
     Route::get('sub_county_crops_view','CropsController@subCountyCropsView')->name('sub_county_crops_view');
+    Route::post('get_sub_county_for_crop','CropsController@getSubCountyCrop')->name('get_sub_county_for_crop');
 });

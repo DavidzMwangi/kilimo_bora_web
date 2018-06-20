@@ -31,19 +31,25 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div class="row">
-                            <div class="">
+                            <div class="col-md-12">
 
-                                <div class="col-md-offset-1 col-md-4">
+                                <div class=" col-md-6">
                                         <label for="counties">County Name</label>
-                                        <select name="counties" id="counties" class="form-control" v-on:change="getSubCounty(this.value)">
+                                        <select name="counties" id="counties" class="form-control" v-on:change="getSubCounty" onchange="getId(this.value)">
                                             <option disabled selected>Please select a county</option>
                                             @foreach($counties as $county)
-                                                <option value="{{$county->id}}">{{$county->name}}</option>
+                                                <option  value="{{$county->id}}">{{$county->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
 
-
+                                <div class=" col-md-6">
+                                    <label for="counties">Sub-County Name</label>
+                                    <select name="sub_counties" id="sub_counties" class="form-control" v-on:change="getCrop" onchange="getChakula(this.value)">
+                                        <option disabled selected>Please select a sub county</option>
+                                            <option  value="">hehe</option>
+                                    </select>
+                                </div>
 
                             </div>
                         </div>
@@ -118,8 +124,17 @@
     {{--});--}}
     {{--});--}}
     {{--</script>--}}
+<script>
 
+</script>
     <script>
+        function getId(county_id) {
+            window.countyId=county_id
+        }
+        function getChakula(sub_county_id) {
+            window.subCountyId=sub_county_id;
+        }
+
         $data=new Vue({
             el:'#work_area',
             data:{
@@ -129,8 +144,18 @@
 
             },
             methods: {
-                getSubCounty:function (county_id) {
-                    alert(county_id);
+                getSubCounty:function () {
+
+                    let me=this;
+                    let url23='{{route('get_sub_county_for_crop')}}';
+                    axios.post(url23,{'county_id':countyId})
+                        .then(res=>{
+                        me.sub_counties=res.data.sub_counties;
+                        })
+                },
+                getCrop:function () {
+                    let me1=this;
+{{--                    let url24='{{route('')}}'--}}
                 }
             }
 
