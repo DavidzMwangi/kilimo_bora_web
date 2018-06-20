@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\County;
 use App\Models\Crop;
+use App\Models\SubCounty;
 use Illuminate\Http\Request;
 
 class CropsController extends Controller
@@ -29,5 +30,14 @@ class CropsController extends Controller
     {
         $counties=County::all();
         return view('crop.sub_county_crops')->withCounties($counties);
+    }
+
+    public function getSubCountyCrop(Request $request)
+    {
+        $subcounties=SubCounty::where('county_id',$request->input('county_id'))->get();
+
+        return response()->json([
+            'sub_counties'=>$subcounties
+        ]);
     }
 }
