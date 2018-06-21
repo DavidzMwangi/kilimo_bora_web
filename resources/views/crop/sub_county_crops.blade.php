@@ -46,8 +46,9 @@
                                 <div class=" col-md-6">
                                     <label for="counties">Sub-County Name</label>
                                     <select name="sub_counties" id="sub_counties" class="form-control" v-on:change="getCrop" onchange="getChakula(this.value)">
-                                        <option disabled selected>Please select a sub county</option>
-                                            <option  value="">hehe</option>
+                                        <option disabled selected>Please select a Sub County</option>
+
+                                        <option  v-for="sub_county in sub_counties" v-bind:value="sub_county.id">@{{sub_county.name  }}</option>
                                     </select>
                                 </div>
 
@@ -84,14 +85,12 @@
                             </thead>
                             <tbody>
 
-                            {{--                            @foreach($subCounties as $sub_county)--}}
-                            <tr v-for="sub_county in sub_counties ">
-                                {{--<td>{{$sub_county->name}}</td>--}}
-                                {{--<td>{{$sub_county->county->name}}</td>--}}
-                                <td>@{{ sub_county.name }}</td>
-                                <td>@{{ sub_county.county.name }}</td>
+
+                            <tr v-for="crop_record in crops_records ">
+
+                                <td>@{{ crop_record.sub_county.name }}</td>
+                                <td>@{{ crop_record.crop.name }}</td>
                             </tr>
-                            {{--@endfo/reach--}}
 
                             </tbody>
 
@@ -108,22 +107,7 @@
 @endsection
 
 @section('script')
-    {{--<script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>--}}
-    {{--<script src="{{asset('plugins/datatables/dataTables.bootstrap.min.js')}}"></script>--}}
 
-    {{--<script>--}}
-    {{--$(function () {--}}
-    {{--$("#example1").DataTable();--}}
-    {{--$('#example2').DataTable({--}}
-    {{--"paging": true,--}}
-    {{--"lengthChange": false,--}}
-    {{--"searching": false,--}}
-    {{--"ordering": true,--}}
-    {{--"info": true,--}}
-    {{--"autoWidth": false--}}
-    {{--});--}}
-    {{--});--}}
-    {{--</script>--}}
 <script>
 
 </script>
@@ -133,12 +117,14 @@
         }
         function getChakula(sub_county_id) {
             window.subCountyId=sub_county_id;
+
         }
 
         $data=new Vue({
             el:'#work_area',
             data:{
                 sub_counties:[],
+                crops_records:[]
             },
             created:function () {
 
@@ -147,15 +133,28 @@
                 getSubCounty:function () {
 
                     let me=this;
+                    me.sub_counties=[];
                     let url23='{{route('get_sub_county_for_crop')}}';
                     axios.post(url23,{'county_id':countyId})
                         .then(res=>{
                         me.sub_counties=res.data.sub_counties;
+
+
+
                         })
                 },
                 getCrop:function () {
                     let me1=this;
-{{--                    let url24='{{route('')}}'--}}
+
+                    let url24='{{route('get_sub_county_crops')}}';
+                    axios.post(url24,{"sub_county_id":subCountyId})
+                        .then(res=>{
+                            me1.crops_records=res.data.records;
+                            //
+                            // $.each(res.data.records,function (key,value) {
+                            //     console.log(key)
+                            // })
+                        })
                 }
             }
 
