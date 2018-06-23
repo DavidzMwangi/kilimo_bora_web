@@ -20,4 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['namespace'=>'Api'],function (){
         Route::get('home_data','HomeController@homeData');
         Route::get('all_crops','HomeController@allCrops');
+        Route::get('diseases','HomeController@diseases');
+        Route::get('mitigation_plans','HomeController@mitigationPlans');
 });

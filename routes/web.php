@@ -38,4 +38,13 @@ Route::group(['middleware'=>'auth'],function (){
     Route::get('sub_county_crops_view','CropsController@subCountyCropsView')->name('sub_county_crops_view');
     Route::post('get_sub_county_for_crop','CropsController@getSubCountyCrop')->name('get_sub_county_for_crop');
     Route::post('get_sub_county_crops','CropsController@getSubCountyCropRecords')->name('get_sub_county_crops');
+
+//    diseases
+    Route::get('all_diseases','DiseaseController@index')->name('all_diseases');
+    Route::post('sub_county_diseases','DiseaseController@subCountyDiseases')->name('sub_county_diseases');
+    Route::post('save_new_disease','DiseaseController@saveNewDisease')->name('save_new_disease');
+
+    //mitigation
+    Route::get('all_mitigations','MitigationPlanController@index')->name('all_mitigations');
+    Route::post('new_mitigation','MitigationPlanController@newMitigation')->name('new_mitigation');
 });
