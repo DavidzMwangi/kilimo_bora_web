@@ -39,6 +39,8 @@
         <li><a href="{{route('sub_counties')}}"><i class="fa fa-circle-o text-red"></i> <span>Sub Counties</span></a></li>
         <li><a href="{{route('all_crops')}}"><i class="fa fa-circle-o text-red"></i> <span>All Crops</span></a></li>
         <li><a href="{{route('sub_county_crops_view')}}"><i class="fa fa-circle-o text-red"></i> <span>Sub County Crops</span></a></li>
+        <li><a href="{{route('all_diseases')}}"><i class="fa fa-circle-o text-red"></i> <span>Diseases</span></a></li>
+        <li><a href="{{route('all_mitigations')}}"><i class="fa fa-circle-o text-red"></i> <span>All Mitigations</span></a></li>
 
         {{--<li class="treeview">--}}
             {{--<a href="#">--}}
